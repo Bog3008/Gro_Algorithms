@@ -1,0 +1,29 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+double pow(double x, double n){
+  double ans = 1;
+  for (int i = 0; i < n; ++i){
+    ans *= x;
+  }
+  return(ans);
+}
+
+double bins(double a, double n, double L, double R){
+while(R - L > 1e-9){
+  double M = (R + L) / 2;
+  if(pow(M, n) < a)
+    L = M;
+  else
+    R = M;
+}
+return(R);
+}
+
+int main() {
+  double a, n;
+  cin >> a >> n;
+
+  cout << fixed << setprecision(8) << bins(a, n, 0, 1000);
+}
